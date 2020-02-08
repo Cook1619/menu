@@ -10,6 +10,7 @@ export default class App extends Component {
         fishes: {},
         order: {}
     }
+
     addFish = (fish) => {
         //take a copy of existing state
         const fishes = { ...this.state.fishes };
@@ -18,8 +19,16 @@ export default class App extends Component {
         // set new fishes object to state
         this.setState({ fishes })
     }
+
     loadFishes = () => {
         this.setState({ fishes: sampleFishes })
+    }
+
+    addToOrder = (key) => {
+        const order = { ...this.state.order };
+        order[key] = order[key] + 1 || 1
+        this.setState({ order })
+
     }
 
     render() {
@@ -28,7 +37,12 @@ export default class App extends Component {
                 <div className="menu">
                     <Header tagline="Fresh Seafood Market" />
                     <ul className="fishes">
-                        {Object.keys(this.state.fishes).map(key => <Fish key={key} details={this.state.fishes[key]}/>)}
+                        {Object.keys(this.state.fishes).map(key => <Fish
+                            key={key}
+                            details={this.state.fishes[key]}
+                            index={key}
+                            addToOrder={this.addToOrder} />
+                        )}
                     </ul>
                 </div>
                 <Order />
