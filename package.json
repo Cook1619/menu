@@ -26,7 +26,9 @@
     "eject": "react-scripts eject",
     "styles": "stylus -u autoprefixer-stylus ./src/css/style.styl -o ./src/css/style.css",
     "now-build": "npm run build && mv build dist",
-    "styles:watch": "npm run styles -- -w"
+    "styles:watch": "npm run styles -- -w",
+    "link": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "browserslist": [
     ">0.2%",
