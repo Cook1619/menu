@@ -41,6 +41,15 @@ export default class App extends Component {
         this.setState({ fishes })
     }
 
+    updateFish = (key, updatedFish) => {
+        //take a cpy of current state
+        const fishes = {...this.state.fishes};
+        //update state
+        fishes[key] = updatedFish;
+        //set state
+        this.setState({ fishes })
+    }
+
     loadFishes = () => {
         this.setState({ fishes: sampleFishes })
     }
@@ -49,7 +58,6 @@ export default class App extends Component {
         const order = { ...this.state.order };
         order[key] = order[key] + 1 || 1
         this.setState({ order })
-
     }
 
     render() {
@@ -67,7 +75,7 @@ export default class App extends Component {
                     </ul>
                 </div>
                 <Order fishes={this.state.fishes} order={this.state.order}/>
-                <Inventory addFish={this.addFish} loadFishes={this.loadFishes} />
+                <Inventory addFish={this.addFish} loadFishes={this.loadFishes} fish={this.state.fishes} updateFish={this.updateFish}/>
             </div>
         )
     }
